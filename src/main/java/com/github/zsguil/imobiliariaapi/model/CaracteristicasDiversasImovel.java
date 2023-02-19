@@ -1,9 +1,11 @@
 package com.github.zsguil.imobiliariaapi.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 
 import java.util.Objects;
@@ -15,6 +17,9 @@ public class CaracteristicasDiversasImovel {
     @GeneratedValue(generator = "seq_caracteristicas_diversas_imovel", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "seq_caracteristicas_diversas_imovel", allocationSize = 1)
     private Integer caracteristicasDiversasId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Imovel imovel;
 
     private Integer ocupacaoMaxima;
     private String complemento;
@@ -30,6 +35,10 @@ public class CaracteristicasDiversasImovel {
 
     public Integer getCaracteristicasDiversasId() {
         return caracteristicasDiversasId;
+    }
+
+    public Imovel getImovel() {
+        return imovel;
     }
 
     public Integer getOcupacaoMaxima() {
@@ -132,13 +141,14 @@ public class CaracteristicasDiversasImovel {
                 && sacada == that.sacada
                 && piscina == that.piscina
                 && Objects.equals(caracteristicasDiversasId, that.caracteristicasDiversasId)
+                && Objects.equals(imovel, that.imovel)
                 && Objects.equals(ocupacaoMaxima, that.ocupacaoMaxima)
                 && Objects.equals(complemento, that.complemento);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(caracteristicasDiversasId, ocupacaoMaxima, complemento, areaDeLazer, churrasqueira, elevador, mobiliado,
+        return Objects.hash(caracteristicasDiversasId, imovel, ocupacaoMaxima, complemento, areaDeLazer, churrasqueira, elevador, mobiliado,
                 semiMobiliado, salaoFestas, sacada, piscina);
     }
 }

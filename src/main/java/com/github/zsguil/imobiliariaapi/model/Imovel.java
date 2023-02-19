@@ -64,6 +64,9 @@ public class Imovel {
     @OneToOne(fetch = FetchType.LAZY)
     private EnderecoImovel enderecoImovel;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    private CaracteristicasDiversasImovel caracteristicasDiversasImovel;
+
     @Enumerated(value = EnumType.STRING)
     private TipoImovel tipoImovel;
 
@@ -227,6 +230,14 @@ public class Imovel {
         this.enderecoImovel = enderecoImovel;
     }
 
+    public void setCaracteristicasDiversasImovel(CaracteristicasDiversasImovel caracteristicasDiversasImovel) {
+        this.caracteristicasDiversasImovel = caracteristicasDiversasImovel;
+    }
+
+    public CaracteristicasDiversasImovel getCaracteristicasDiversasImovel() {
+        return caracteristicasDiversasImovel;
+    }
+
     public TipoImovel getTipoImovel() {
         return tipoImovel;
     }
@@ -274,6 +285,7 @@ public class Imovel {
                 && Objects.equals(valorLixo, imovel.valorLixo)
                 && Objects.equals(taxaLimpeza, imovel.taxaLimpeza)
                 && Objects.equals(enderecoImovel, imovel.enderecoImovel)
+                && Objects.equals(caracteristicasDiversasImovel, imovel.caracteristicasDiversasImovel)
                 && tipoImovel == imovel.tipoImovel
                 && tipoNegociacao == imovel.tipoNegociacao;
     }
@@ -283,6 +295,6 @@ public class Imovel {
         return Objects.hash(imovelId, numeroMatriculaImovel, numeroMatriculaAgua, numeroUnidadeEnergia, titulo, descricao,
                 propostasValoresFixos, demaisTaxas, valorVenda, valorIptu, valorCondominio, valorAgua, valorEnergia, valorLixo,
                 taxaLimpeza, divulgarPropostasValoresFixos, usarValorVendaComoMinimo, divulgarValorVenda,
-                divulgarValoresFixos, enderecoImovel, tipoImovel, tipoNegociacao);
+                divulgarValoresFixos, enderecoImovel, caracteristicasDiversasImovel, tipoImovel, tipoNegociacao);
     }
 }
